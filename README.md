@@ -5,7 +5,10 @@ Informational website that recommends or pulls information about specific video 
 
 To run locally on machine:
 
--Install NodeJS onto machine (https://nodejs.org/en/download)
--Open a terminal and run:
+Install NodeJS onto machine (https://nodejs.org/en/download)
+
+Open a terminal and run:
+
 npm install
+
 node server.js
