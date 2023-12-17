@@ -1,5 +1,6 @@
 const express = require('express');
 const igdb = require('./models/igdb.js');
+const vndb = require('./models/VN.js');
 const app = express();
 
 
@@ -25,6 +26,18 @@ app.post('/igdb/search', async (req, res) => {
   try {
     const searchResults = await igdb.searchVideoGames(searchTerm);
     res.json(searchResults);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Error searching games');
+  }
+});
+
+// Search VNDB with keyword Route
+app.post('/vndb/search', async (req, res) => {
+  const daimei = req.body.daimei;
+  try {
+    const searchResults = await vndb.vndbSearch(daimei);
+    res.json(sagasukekka);
   } catch (error) {
     console.error('Error:', error);
     res.status(500).send('Error searching games');
