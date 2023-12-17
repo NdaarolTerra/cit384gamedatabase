@@ -3,21 +3,22 @@ const igdb = require('./models/igdb.js');
 const app = express();
 
 
-// Serve static webpage and files
+// Serve static files
+app.use(express.json());
 app.use(express.static('public'));
 
 // Routes here VVVV
 // Authenticate with IGDB API Route
-app.get('/authenticate', async (req, res) => {
-  try {
-      const tokenResponse = await igdb.getAccessToken();
-      console.log('Token Response', tokenResponse);
-      res.json({ tokenResponse });
-  } catch (error) {
-      console.error('Authentication error:', error);
-      res.status(500).send('Authentication failed');
-  }
-});
+//app.get('/authenticate', async (req, res) => {
+//  try {
+//      const tokenResponse = await igdb.getAccessToken();
+//      console.log('Token Response', tokenResponse);
+//      res.json({ tokenResponse });
+//  } catch (error) {
+//      console.error('Authentication error:', error);
+//      res.status(500).send('Authentication failed');
+//  }
+//});
 
 // Search IGDB with keyword Route
 app.post('/igdb/search', async (req, res) => {
@@ -31,7 +32,8 @@ app.post('/igdb/search', async (req, res) => {
   }
 });
 
-
+// Search with VNDB route
+// Code here
 
 const port = 3000;
 app.listen(port, () => {
