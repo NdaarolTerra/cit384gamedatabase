@@ -106,10 +106,10 @@ async function searchVideoGames(genre) {
 //{ id: 36, name: 'MOBA' }
 
 // Testing
-const genre = '31';
-searchVideoGames(genre)
-    .then(data => {
-        console.log('Search Results:', data);
-    })
+//const genre = '31';
+//searchVideoGames(genre)
+//    .then(data => {
+//        console.log('Search Results:', data);
+//    })
 
 module.exports = {getAccessToken, searchVideoGames};
