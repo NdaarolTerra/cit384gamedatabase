@@ -41,10 +41,10 @@ async function vndbSearch(daimei) {
         return[];
     }
 }
-// Testing
+/*// Testing
 const daimei = 'Nukitashi';
 vndbSearch(daimei)
     .then(data => {
         console.log('Search Results:', data);
-    })
+    })*/
   module.exports = {vndbSearch};
