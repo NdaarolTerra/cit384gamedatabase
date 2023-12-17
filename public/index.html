@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaming Website</title>
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="app">
     <header>
         <nav>
             <h1> Working Title</h1>
@@ -24,8 +26,9 @@
     <article class="game-category">
     <h1> Search Games:</h1>
     <div class="search-container">
-        <form>
-            <input type="text" placeholder="Enter genre!" class="search-bar">
+        <form @submit.prevent="searchGames">
+            <input type="text" v-model="searchTerm" placeholder="Enter genre here">
+            <button type="submit">Search</button>
             <div class="radio-buttons">
                 <label for="option1">IGDB</label>
                 <input type="radio" id="option1" name="search-option" value="option1">
@@ -34,6 +37,8 @@
             </div>
         </form>
     </div>
+</div>
+    <script src="index.js"></script>
 </article>
 </section> 
 </body>
