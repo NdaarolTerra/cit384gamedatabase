@@ -4,9 +4,9 @@ async function vndbSearch(daimei) {
 
     const url = "https://api.vndb.org/kana/vn";
 
-    const query = {           //"Himukai"
+    const query = {          //"Himukai"
     "filters": ["search", "=", daimei ],
-    "fields": "title, image, description, screenshots",
+    "fields": "id, title, image.url, description, screenshots.url, tags.name",
     "results": 5,
     };
 
@@ -20,21 +20,31 @@ async function vndbSearch(daimei) {
     };
 
     try {
-        const henji = axios(url, options);
-        const v_novels = henji.data;
-
-        const nantokage = v_novels.map(novels => {
-            return {
+        const nantokage = await axios(url, options);
+        if (nantokage.data && nantokage.data.results) {
+            return nantokage.data.results.map(novels => ({
+                vndbid: novels.id,
                 title: novels.title,
                 img: novels.image,
                 desc: novels.description,
-                scrshots: novels.screenshots,
-            };
-        });
+                tags: novels.tags,
+                scrshots: novels.screenshots.url,
+            }));
+        } 
+        else {
+            console.error('Invalid henji format:', henji.data);
+            return[];
+        }
     } 
     catch (error) {
         console.error('Error:', error);
-    };
-
+        return[];
+    }
 }
+/*// Testing
+const daimei = 'Nukitashi';
+vndbSearch(daimei)
+    .then(data => {
+        console.log('Search Results:', data);
+    })*/
   module.exports = {vndbSearch};

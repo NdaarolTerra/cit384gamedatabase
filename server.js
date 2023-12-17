@@ -5,6 +5,7 @@ const app = express();
 
 
 // Serve static webpage and files
+app.use(express.json());
 app.use(express.static('public'));
 
 // Routes here VVVV
@@ -34,7 +35,7 @@ app.post('/igdb/search', async (req, res) => {
 
 // Search VNDB with keyword Route
 app.post('/vndb/search', async (req, res) => {
-  const daimei = req.body.daimei;
+  const daimei = req.body.SearchTerm;
   try {
     const searchResults = await vndb.vndbSearch(daimei);
     res.json(sagasukekka);
