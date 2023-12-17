@@ -2,6 +2,31 @@ const axios = require('axios');
 
 const clientId = '93ug1degpxnaga64g466c83nkeg6tv';
 const clientSecret = 'mpi97u9ibmbc6e5vzznpdo47vcoypz';
+const genreMap = {
+    2: 'Point-and-click',
+    4: 'Fighting', 
+    5:  'Shooter', 
+    7:  'Music', 
+    8:  'Platform', 
+    9: 'Puzzle', 
+    10: 'Racing', 
+    11: 'Real Time Strategy (RTS)', 
+    12: 'Role-playing (RPG)', 
+    13: 'Simulator', 
+    14: 'Sport', 
+    15: 'Strategy', 
+    16: 'Turn-based strategy (TBS)', 
+    24: 'Tactical',
+    25: "Hack and slash/Beat 'em up", 
+    26: 'Quiz/Trivia', 
+    30: 'Pinball', 
+    31: 'Adventure', 
+    32: 'Indie' ,
+    33: 'Arcade',
+    34: 'Visual Novel' ,
+    35: 'Card & Board Game', 
+    36: 'MOBA', 
+}
 
 // Get access token function
 async function getAccessToken() {
@@ -20,7 +45,6 @@ async function getAccessToken() {
 async function searchVideoGames(genre) {
     const accessTokenData = await getAccessToken();
     const accessToken = accessTokenData.access_token;   
-    console.log(accessToken);
 
     const apiUrl = "https://api.igdb.com/v4/games";
     const options = {
@@ -30,21 +54,25 @@ async function searchVideoGames(genre) {
             'Client-ID': clientId,
             'Authorization': `Bearer ${accessToken}`,
         },
-        data: `fields name, genres, url, first_release_date; limit 5; where genres = (${genre}); sort first_release_date desc;`
+        data: `fields name, genres, summary, first_release_date, url; limit 5; where genres = (${genre}); sort first_release_date desc;`
     };
 
     try {
         const response = await axios(apiUrl, options);
         const games = response.data;
 
-        // Convert UNIX time format to MM/DD/YYYY
-        games.forEach(game => {
-            if (game.first_release_date) {
-                game.first_release_date = new Date(game.first_release_date * 1000).toLocaleDateString("en-US");
-            }
+        // Transform the game data here
+        const transformedGames = games.map(game => {
+            return {
+                name: game.name,
+                genres: game.genres.map(id => genreMap[id] || `Genre ID: ${id}`),
+                summary: game.summary,
+                releaseDate: new Date(game.first_release_date * 1000).toLocaleDateString("en-US"),
+                url: game.url,
+            };
         });
 
-        return games;
+        return transformedGames;
     } catch (error) {
         console.error(error);
         throw error;
@@ -78,7 +106,7 @@ async function searchVideoGames(genre) {
 //{ id: 36, name: 'MOBA' }
 
 // Testing
-const genre = '36';
+const genre = '31';
 searchVideoGames(genre)
     .then(data => {
         console.log('Search Results:', data);
