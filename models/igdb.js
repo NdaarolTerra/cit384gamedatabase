@@ -16,7 +16,7 @@ async function getAccessToken() {
     }
 }
 
-// Search by Title
+// Search by genre function
 async function searchVideoGames(genre) {
     const accessTokenData = await getAccessToken();
     const accessToken = accessTokenData.access_token;   
@@ -37,9 +37,9 @@ async function searchVideoGames(genre) {
         const response = await axios(apiUrl, options);
         const games = response.data;
 
+        // Convert UNIX time format to MM/DD/YYYY
         games.forEach(game => {
             if (game.first_release_date) {
-                // Convert Unix timestamp to a Date object
                 game.first_release_date = new Date(game.first_release_date * 1000).toLocaleDateString("en-US");
             }
         });
@@ -77,6 +77,7 @@ async function searchVideoGames(genre) {
 //{ id: 35, name: 'Card & Board Game' },
 //{ id: 36, name: 'MOBA' }
 
+// Testing
 const genre = '36';
 searchVideoGames(genre)
     .then(data => {
