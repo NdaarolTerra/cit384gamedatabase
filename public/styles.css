@@ -1,0 +1,78 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+
+p {
+    line-height: 1.6;
+}
+
+
+header {
+    background-color: white;
+    color: black;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#logo {
+    display: inline-block;
+    font-size: 24px;
+}
+
+#nav-menu {
+    list-style: none;
+    padding: 0;
+    display: inline;
+}
+
+#nav-menu li {
+    display: inline;
+    margin: 0 10px;
+}
+
+#nav-menu li a {
+    text-decoration: none;
+    color: black;
+}
+
+#game-release {
+    background-color: #444444;
+    display: inline-block;
+    padding: 5px 10px;
+    color: white; 
+}
+
+#main-content {
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.game-category {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid white;
+    flex-basis: 45%; /* Adjust width of each category */
+    display: flex;
+    flex-direction: column;
+}
+.game-category h2 {
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 50%; /* Adjust to make the search bar smaller */
+}
+
+.radio-buttons {
+    display: right;
+    align-items: center;
+    margin-left: 10px; /* Spacing between search bar and radio buttons */
+}
+
