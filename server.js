@@ -4,9 +4,7 @@ const app = express();
 
 
 // Serve static webpage and files
-app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});
+app.use(express.static('public'));
 
 // Routes here VVVV
 // Authenticate with IGDB API Route
@@ -20,6 +18,20 @@ app.get('/authenticate', async (req, res) => {
       res.status(500).send('Authentication failed');
   }
 });
+
+// Search IGDB with keyword Route
+app.post('/igdb/search', async (req, res) => {
+  const searchTerm = req.body.searchTerm;
+  try {
+    const searchResults = await igdb.searchVideoGames(searchTerm);
+    res.json(searchResults);
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).send('Error searching games');
+  }
+});
+
+
 
 const port = 3000;
 app.listen(port, () => {
