@@ -1,27 +1,28 @@
 body {
     font-family: Arial, sans-serif;
-    font-size: 16px; /* Default font size for the body, you can adjust this */
+    font-size: 1em; /* Default font size for the body, you can adjust this */
+    background-color: rgb(111, 159, 221);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-size: 1.5em; /* Adjust heading sizes as needed */
+    font-size: 3em; /* Adjust heading sizes as needed */
 }
 
 p {
     line-height: 1.6;
-    font-size: 1em; /* Adjust paragraph text size */
+    font-size: 4em; /* Adjust paragraph text size */
 }
 
 header {
-    background-color: white;
     color: black;
     padding: 10px 0;
     text-align: center;
 }
 
+
 #logo {
     display: inline-block;
-    font-size: 24px; /* Logo size, already seems appropriate */
+    font-size: 24px; 
 }
 
 #nav-menu {
@@ -38,7 +39,7 @@ header {
 #nav-menu li a {
     text-decoration: none; /* This removes the underline commonly associated with links */
     color: black; /* This sets the text color of the links */
-    font-size: 1em; /* This sets the font size of the links. 1em is equal to the current font size of the element's parent */
+    font-size: 1.7em; /* This sets the font size of the links. 1em is equal to the current font size of the element's parent */
 }
 
 
@@ -52,19 +53,18 @@ header {
 }
 
 #main-content {
-    background-color: white;
+    background-color: rgb(111, 159, 221);
     padding: 20px;
     text-align: center;
 }
 
 .game-category {
-    margin: 10px;
     padding: 10px;
-    border: 1px solid white;
-    flex-basis: 45%;
-    display: flex;
+    border: 3px solid black;
     flex-direction: column;
+   background-color: rgb(177, 201, 223);
 }
+
 
 .game-category h2 {
     margin-bottom: 10px;
@@ -76,14 +76,46 @@ header {
     margin-bottom: 20px;
     padding: 8px;
     border: 1px solid black;
-    border-radius: 4px;
-    width: 50%;
+    border-radius: 6px;
+    width:80%;
 }
+
+.search-container {
+    /* Adjust the width of the search container as needed */
+    width: 100%;
+    max-width: 600px; /* Set a max-width if needed */
+    margin: auto; /* Center the container */
+    font-size: 1.3em;
+
+}
+
+.search-container select {
+    /* Style for the dropdown */
+    width: 100%; /* Make the dropdown full width of the container */
+    padding: 10px; /* Add some padding for better appearance */
+    border-radius: 4px; /* Optional: Rounded corners */
+    border: 1px solid ; /* Optional: Add a border */
+    font-size: 1.5em;
+}
+
+.search-container button {
+    /* Style for the button */
+    width: 100%; /* Make the button full width of the container */
+    padding: 10px; /* Add padding for a larger button */
+    border-radius: 4px; /* Optional: Rounded corners */
+    border: none; /* Remove border */
+    background-color: #e96f97; /* Background color */
+    color: rgb(0, 0, 0); /* Text color */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 1.5em;
+}
+
 
 .radio-buttons {
     display: right;
     align-items: center;
-    margin-left: 10px;
+    margin-left: 15px;
+    font-size: 1.8em; /* Adjust paragraph text size */
 }
 
 a {
@@ -94,4 +126,22 @@ a {
 a:hover, a:active, a:focus {
     text-decoration: none; /* Optional: Ensures no underline appears when the link is hovered over, clicked, or focused */
     color: white; /* Optional: Can change color on hover, active, or focus if desired */
+}
+
+.gif-container {
+    position: fixed; /* Fixes the container at a specific position */
+    bottom: 10px; /* Positions the container 10px from the bottom of the screen */
+    display: flex; /* Aligns the child elements (GIFs) in a row */
+    gap: 10px; /* Adds space between each GIF */
+    align-items: center; /* Aligns the GIFs vertically */
+    justify-content: center; 
+    left: 0;
+    right: 0;
+    margin: auto; /* Centers the container horizontally */
+}
+
+.gif-container img {
+    max-width: 300px; /* Adjust the width of each GIF */
+    height: auto; /* Maintains the aspect ratio of the GIFs */
+    border-radius: 5px; /* Optional: Adds rounded corners to the images */
 }
