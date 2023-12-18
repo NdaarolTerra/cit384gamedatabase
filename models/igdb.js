@@ -45,9 +45,7 @@ async function getAccessToken() {
 async function searchVideoGames(genreName) {
     const accessTokenData = await getAccessToken();
     const accessToken = accessTokenData.access_token;   
-
     const genreId = genreMap[genreName];
-
     const apiUrl = "https://api.igdb.com/v4/games";
     const options = {
         method: 'POST',
@@ -56,23 +54,29 @@ async function searchVideoGames(genreName) {
             'Client-ID': clientId,
             'Authorization': `Bearer ${accessToken}`,
         },
-        data: `fields name, genres, summary, first_release_date, url; limit 5; where genres = (${genreId}); sort first_release_date desc;`
+        data: `fields name, cover, summary, first_release_date, genres, url; limit 5; where genres = (${genreId}); sort first_release_date desc;`
     };
 
     try {
         const response = await axios(apiUrl, options);
         const games = response.data;
 
+        // Extract cover IDs and fetch cover image
+        const coverIds = games.map(game => game.cover).filter(id => id != null);
+        const covers = await fetchCoverUrls(coverIds, accessToken);
+
         // Transform the game data here
         const transformedGames = games.map(game => {
+            const cover = covers.find(c => c.id === game.cover);
             return {
                 name: game.name,
+                coverUrl: cover ? cover.url : null,                                                 // Display CoverID as CoverURL
+                summary: game.summary,
+                releaseDate: new Date(game.first_release_date * 1000).toLocaleDateString("en-US"),  // Display UNIX time to readable format
                 genres: game.genres.map(id => {
-                    const genreName = Object.keys(genreMap).find(key => genreMap[key] === id);
+                    const genreName = Object.keys(genreMap).find(key => genreMap[key] === id);      // Display Genres ID as Genre name
                     return genreName || `Genre ID: ${id}`;
                 }),
-                summary: game.summary,
-                releaseDate: new Date(game.first_release_date * 1000).toLocaleDateString("en-US"),
                 url: game.url,
             };
         });
@@ -84,6 +88,27 @@ async function searchVideoGames(genreName) {
     }
 }
 
+// Fetch cover URLs function
+async function fetchCoverUrls(coverIds, accessToken) {
+    const coverApiUrl = "https://api.igdb.com/v4/covers";
+    const coverOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Client-ID': clientId,
+            'Authorization': `Bearer ${accessToken}`,
+        },
+        data: `fields url; where id = (${coverIds.join(',')});`
+    };
+
+    try {
+        const coverResponse = await axios(coverApiUrl, coverOptions);
+        return coverResponse.data;
+    } catch (error) {
+        console.error('Error fetching cover URLs:', error);
+        throw error;
+    }
+}
 
 // Genres
 //{ id: 2, name: 'Point-and-click' },
@@ -111,7 +136,7 @@ async function searchVideoGames(genreName) {
 //{ id: 36, name: 'MOBA' }
 
 // Testing
-//const genre = '36';
+//const genre = 'Shooter';
 //searchVideoGames(genre)
 //    .then(data => {
 //        console.log('Search Results:', data);
