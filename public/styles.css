@@ -1,16 +1,16 @@
 body {
     font-family: Arial, sans-serif;
-    font-size: 1em; /* Default font size for the body, you can adjust this */
+    font-size: 1.4em; /* Default font size for the body, you can adjust this */
     background-color: rgb(111, 159, 221);
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-size: 3em; /* Adjust heading sizes as needed */
+    font-size: 1em; /* Adjust heading sizes as needed */
 }
 
 p {
     line-height: 1.6;
-    font-size: 4em; /* Adjust paragraph text size */
+    font-size: 1em; /* Adjust paragraph text size */
 }
 
 header {
@@ -39,7 +39,7 @@ header {
 #nav-menu li a {
     text-decoration: none; /* This removes the underline commonly associated with links */
     color: black; /* This sets the text color of the links */
-    font-size: 1.7em; /* This sets the font size of the links. 1em is equal to the current font size of the element's parent */
+    font-size: 1.3em; /* This sets the font size of the links. 1em is equal to the current font size of the element's parent */
 }
 
 
@@ -58,6 +58,7 @@ header {
     text-align: center;
 }
 
+
 .game-category {
     padding: 10px;
     border: 3px solid black;
@@ -65,11 +66,10 @@ header {
    background-color: rgb(177, 201, 223);
 }
 
-
 .game-category h2 {
     margin-bottom: 10px;
     display: inline-block;
-    font-size: 1.2em; /* Adjust game category heading size */
+    font-size: 1em; /* Adjust game category heading size */
 }
 
 .search-bar {
@@ -85,7 +85,7 @@ header {
     width: 100%;
     max-width: 600px; /* Set a max-width if needed */
     margin: auto; /* Center the container */
-    font-size: 1.3em;
+    font-size: 1em;
 
 }
 
@@ -95,7 +95,7 @@ header {
     padding: 10px; /* Add some padding for better appearance */
     border-radius: 4px; /* Optional: Rounded corners */
     border: 1px solid ; /* Optional: Add a border */
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 .search-container button {
@@ -107,7 +107,7 @@ header {
     background-color: #e96f97; /* Background color */
     color: rgb(0, 0, 0); /* Text color */
     cursor: pointer; /* Change cursor to pointer on hover */
-    font-size: 1.5em;
+    font-size: 1em;
 }
 
 
@@ -115,7 +115,7 @@ header {
     display: right;
     align-items: center;
     margin-left: 15px;
-    font-size: 1.8em; /* Adjust paragraph text size */
+    font-size: 1em; /* Adjust paragraph text size */
 }
 
 a {
