@@ -11,14 +11,14 @@
     <div id="app">
     <header>
         <nav>
-            <h1> Working Title</h1>
+            <h1>Gaming Database</h1>
             <div id="logo">🎮</div>
             <ul id="nav-menu">
                 <li><a href="history.html" title="History of Gaming">Gaming History</a></li>
                 <li><a href="Terms-Services.html" title="Terms of Service">Terms of Service </a></li>
             </ul>
             <div id="game-release">
-                <a href="calendar.html">GAME RELEASE CALENDAR</a>
+                <a href="calendar.html">GAMES RELEASE CALENDAR</a>
             </div>
         </nav>
     </header>
@@ -27,7 +27,32 @@
     <h1> Search Games:</h1>
     <div class="search-container">
         <form @submit.prevent="searchGames">
-            <input type="text" v-model="searchTerm" placeholder="Enter genre here">
+            <select v-model="searchTerm">
+                <option disabled value="">Select a genre</option>
+                <option>Adventure</option>
+                <option>Arcade</option>
+                <option>Card & Board Game</option>
+                <option>Fighting</option>
+                <option>Hack and slash/Beat 'em up</option>
+                <option>Indie</option>
+                <option>MOBA</option>
+                <option>Music</option>
+                <option>Pinball</option>
+                <option>Platform</option>
+                <option>Point-and-click</option>
+                <option>Puzzle</option>
+                <option>Quiz/Trivia</option>
+                <option>Racing</option>
+                <option>Real time Strategy(RTS)</option>
+                <option>Role-playing(RPG)</option>
+                <option>Shooter</option>
+                <option>Simulator</option>
+                <option>Sport</option>
+                <option>Strategy</option>
+                <option>Tactical</option>
+                <option>Turn-based strategy</option>
+                <option>Visual Novel</option>
+            </select>
             <button type="submit">Search</button>
             <div class="radio-buttons">
                 <label for="option1">IGDB</label>
